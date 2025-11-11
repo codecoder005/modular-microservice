@@ -1,0 +1,78 @@
+services:
+  inventory-ms:
+    build: ./inventory-ms
+    container_name: inventory-ms
+    hostname: inventory-ms
+    ports:
+      - "8080:8080"
+    command: [ "--spring.profiles.active=local,docker" ]
+    networks:
+      - ms-net
+
+  logistics-ms:
+    build: ./logistics-ms
+    container_name: logistics-ms
+    hostname: logistics-ms
+    ports:
+      - "8081:8081"
+    command: [ "--spring.profiles.active=local,docker" ]
+    networks:
+      - ms-net
+
+  orders-ms:
+    build: ./orders-ms
+    container_name: orders-ms
+    hostname: orders-ms
+    ports:
+      - "8082:8082"
+    command: [ "--spring.profiles.active=local,docker" ]
+    networks:
+      - ms-net
+
+  payments-ms:
+    build: ./payments-ms
+    container_name: payments-ms
+    hostname: payments-ms
+    ports:
+      - "8083:8083"
+    command: [ "--spring.profiles.active=local,docker" ]
+    networks:
+      - ms-net
+
+  search-ms:
+    build: ./search-ms
+    container_name: search-ms
+    hostname: search-ms
+    ports:
+      - "8084:8084"
+    command: [ "--spring.profiles.active=local,docker" ]
+    networks:
+      - ms-net
+
+  users-ms:
+    build: ./users-ms
+    container_name: users-ms
+    hostname: users-ms
+    ports:
+      - "8085:8085"
+    command: ["--spring.profiles.active=local,docker"]
+    networks:
+      - ms-net
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    hostname: jaeger
+    ports:
+      - "16686:16686"   # UI
+      - "4317:4317"     # OTLP gRPC
+      - "4318:4318"     # OTLP HTTP
+      - "14269:14269"   # Prometheus scrape endpoint
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - ms-net
+
+networks:
+  ms-net:
+    driver: bridge

@@ -57,12 +57,16 @@ spring:
 ## Spring Boot actuator endpoints
 management:
   endpoint:
+    chaosmonkey:
+      enabled: true
+    chaosmonkeyjmx:
+      enabled: true
+    circuitbreakers:
+      enabled: true
     health:
       show-components: always
       show-details: always
       access: unrestricted
-    circuitbreakers:
-      enabled: true
     metrics:
       access: unrestricted
     prometheus:
@@ -90,6 +94,9 @@ management:
       export:
         enabled: true
 
+chaos:
+  monkey:
+    enabled: true
 
 logging:
   level:

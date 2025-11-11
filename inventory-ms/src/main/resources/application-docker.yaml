@@ -1,0 +1,12 @@
+## Spring Boot actuator endpoints
+management:
+  otlp:
+    tracing:
+      endpoint: http://jaeger:4318/v1/traces
+
+external-service:
+  logistics-ms:
+    host: http://logistics-ms:8081/logistics-ms
+    ping-uri: /ping
+    health-check-uri: /actuator/health
+    logistics-uri: /api/v1/logistics

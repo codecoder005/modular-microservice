@@ -7,7 +7,7 @@ spring:
       enabled: true
       jmx-name: org.springframework.boot:type=Admin,name=SpringApplication
   profiles:
-    active: ${ACTIVE_PROFILES:local}
+    active: ${ACTIVE_PROFILES:local,chaos-monkey}
   threads:
     virtual:
       enabled: true

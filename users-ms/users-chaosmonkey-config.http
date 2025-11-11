@@ -1,0 +1,61 @@
+### Get Chaos Monkey Status
+GET http://localhost:8085/users-ms/actuator/chaosmonkey
+
+### Disable Chaos Monkey
+POST http://localhost:8085/users-ms/actuator/chaosmonkey/disable
+
+### Enable Chaos Monkey
+POST http://localhost:8085/users-ms/actuator/chaosmonkey/enable
+
+### Chaos Monkey Watchers Configuration
+POST http://localhost:8085/users-ms/actuator/chaosmonkey/watchers
+Content-Type: application/json
+
+{
+  "controller": false,
+  "restController": true,
+  "service": false,
+  "repository": true,
+  "component": false,
+  "restTemplate": false,
+  "webClient": false,
+  "actuatorHealth": false,
+  "beans": [],
+  "beanClasses": [],
+  "excludeClasses": []
+}
+
+### Configure Chaos Monkey Assaults
+POST http://localhost:8085/users-ms/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+  "level": 2,
+  "deterministic": false,
+  "latencyRangeStart": 1000,
+  "latencyRangeEnd": 3000,
+  "latencyActive": false,
+  "exceptionsActive": true,
+  "exception": {
+    "type": "java.lang.RuntimeException",
+    "method": "<init>",
+    "arguments": [
+      {
+        "type": "java.lang.String",
+        "value": "Chaos Monkey - RuntimeException"
+      }
+    ]
+  },
+  "killApplicationActive": false,
+  "killApplicationCronExpression": "OFF",
+  "memoryActive": false,
+  "memoryMillisecondsHoldFilledMemory": 90000,
+  "memoryMillisecondsWaitNextIncrease": 1000,
+  "memoryFillIncrementFraction": 0.15,
+  "memoryFillTargetFraction": 0.25,
+  "memoryCronExpression": "OFF",
+  "cpuActive": false,
+  "cpuMillisecondsHoldLoad": 90000,
+  "cpuLoadTargetFraction": 0.9,
+  "cpuCronExpression": "OFF"
+}

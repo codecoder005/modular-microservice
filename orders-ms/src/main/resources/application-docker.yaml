@@ -1,0 +1,22 @@
+## Spring Boot actuator endpoints
+management:
+  otlp:
+    tracing:
+      endpoint: http://jaeger:4318/v1/traces
+
+external-service:
+  inventory-ms:
+    host: http://inventory-ms:8080/inventory-ms
+    ping-uri: /ping
+    health-check-uri: /actuator/health
+    products-uri: /api/v1/products
+  payments-ms:
+    host: http://payments-ms:8083/payments-ms
+    ping-uri: /ping
+    health-check-uri: /actuator/health
+    make-payment-uri: /api/v1/payments
+  users-ms:
+    host: http://users-ms:8085/users-ms
+    ping-uri: /ping
+    health-check-uri: /actuator/health
+    users-uri: /api/v1/users
