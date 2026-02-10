@@ -92,6 +92,8 @@ management:
 
 
 logging:
+  file:
+    name: logs/search-ms/app.log
   level:
     org:
       springframework:

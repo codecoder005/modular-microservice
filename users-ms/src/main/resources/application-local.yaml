@@ -99,6 +99,8 @@ chaos:
     enabled: true
 
 logging:
+  file:
+    name: logs/users-ms/app.log
   level:
     org:
       springframework:

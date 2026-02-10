@@ -73,6 +73,34 @@ services:
     networks:
       - ms-net
 
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    hostname: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - C:\Users\ramak\Downloads\version-control\popcorn\modular-microservice\prometheus\docker-env\prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - ms-net
+
+  # Grafana Dashboard IDs: 12900, 4701
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    container_name: grafana
+    hostname: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    networks:
+      - ms-net
+
 networks:
   ms-net:
     driver: bridge

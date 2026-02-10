@@ -91,6 +91,8 @@ management:
         enabled: true
 
 logging:
+  file:
+    name: logs/inventory-ms/app.log
   level:
     org:
       springframework:
